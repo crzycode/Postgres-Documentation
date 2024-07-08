@@ -1,0 +1,27 @@
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    path LTREE
+);
+CREATE EXTENSION ltree;
+
+INSERT INTO categories (name, path) VALUES 
+('Root', 'Top'),
+('Electronics', 'Top.Electronics'),
+('Computers', 'Top.Electronics.Computers'),
+('Laptops', 'Top.Electronics.Computers.Laptops'),
+('Desktops', 'Top.Electronics.Computers.Desktops'),
+('Phones', 'Top.Electronics.Phones'),
+('Smartphones', 'Top.Electronics.Phones.Smartphones'),
+('Feature Phones', 'Top.Electronics.Phones.FeaturePhones');
+
+INSERT INTO categories (name, path) VALUES
+('CEO', 'Company.CEO'),
+('VP of Engineering', 'Company.CEO.VP_Engineering'),
+('Engineering Manager', 'Company.CEO.VP_Engineering.Eng_Manager'),
+('Software Engineer', 'Company.CEO.VP_Engineering.Eng_Manager.Software_Engineer'),
+('VP of Marketing', 'Company.CEO.VP_Marketing'),
+('Marketing Manager', 'Company.CEO.VP_Marketing.Marketing_Manager');
+
+select * from categories
+SELECT * FROM categories WHERE path <@ 'Top.Electronics.Phones';
