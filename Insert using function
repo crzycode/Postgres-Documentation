@@ -21,3 +21,18 @@ $$ LANGUAGE plpgsql;
 drop function insertfun_test
 select * from insertfun_test(25,'mangal');
 select * from public.ins_data
+
+
+//node js
+
+db.connect().then((con:any) =>{
+           var c = con
+           var Query = `select * from insertfun_test($1,$2)`
+           c.any(Query,[25,"rahul"]).then((res:any) =>{
+            c.done()
+            console.log(res)
+
+           }).catch((err:any) =>{
+            console.log(err)
+           })
+        })
